@@ -206,16 +206,16 @@
         </StackPanel>
 
         <StackPanel  Background="#35000000" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left"  Grid.Row="0" Margin="5" Orientation="Horizontal" Visibility="{Binding HaveSoundData, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <StackPanel>
+            <!--<StackPanel>
                 <local:VUMeterControl Value="{Binding SoundL}" Width="10" Height="50" Margin="2"  MaxValue="100" BlockCount="14" HighLevel="13" MiddleLevel="10" PeakValue="{Binding PeakSoundL}" />
                 <Label Content="L" Padding="0" HorizontalContentAlignment="Center"/>
             </StackPanel>
             <StackPanel>
                 <local:VUMeterControl Value="{Binding SoundR}" Width="10" Height="50" Margin="2"  MaxValue="100" BlockCount="14" HighLevel="13" MiddleLevel="10" PeakValue="{Binding PeakSoundL}"/>
                 <Label Content="R" Padding="0" HorizontalContentAlignment="Center"/>
-            </StackPanel>
+            </StackPanel>-->
         </StackPanel>
-        <materialDesign:Card Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Right"  Grid.Row="0" IsEnabled="{Binding FocusingEnabled}" Grid.RowSpan="4" Margin="10,30,10,10">
+        <materialDesign:Card Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Right"  Grid.Row="0" IsEnabled="{Binding FocusingEnabled}" Grid.RowSpan="4" Margin="10,30,10,10" Visibility="Hidden">
             <StackPanel Margin="4">
                 <Button Height="40" Width="40" Margin="4" Style="{DynamicResource MaterialDesignFloatingActionLightButton}" HorizontalAlignment="Center" Command="{Binding FullScreenCommand}">
                     <Rectangle Width="20" Height="20">
@@ -331,25 +331,19 @@
         <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="4"  MinWidth="250" Visibility="{Binding ElementName=PanelButton, Path=IsChecked , Converter={StaticResource BooleanToVisibilityConverter1}}" Margin="15,0,0,3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="72*" />
-                <RowDefinition Height="475*" />
+                <RowDefinition Height="Auto" MinHeight="12" />
+                <RowDefinition Height="84*" />
+                <RowDefinition Height="631*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Button Content="{T:Translate ButtonAutoFocus}" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="112" Command="{Binding AutoFocusCommand}" 
 					Visibility="{Binding ShowAutofocusLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}"/>
 
-            <Button Grid.Row="0" Grid.Column="0" Content="{T:Translate ButtonCapture}" Height="30" Margin="0,10,10,0" Command="{Binding CaptureCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="101" IsEnabled="{Binding IsFree}"/>
-            <Button Grid.Row="0" Grid.Column="0" Content="{T:Translate ButtonCancel}" Height="30" Margin="0,10,10,0" Command="{Binding CancelCaptureCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="101" 
-					Visibility="{Binding CaptureInProgress, Converter={StaticResource BooleanToVisibilityConverter1}}"/>
-
-            <Button Grid.Row="0" Content="{Binding RecButtonText}" Height="30" Margin="10,50,10,0" Command="{Binding RecordMovieCommand}" VerticalAlignment="Top" IsEnabled="{Binding IsFree}" HorizontalAlignment="Left" Width="112"/>
-
-            <Button Grid.Row="0" Content="{T:Translate ButtonPreview}" Height="30" Margin="10,50,10,0" Command="{Binding PreviewCommand}" VerticalAlignment="Top" IsEnabled="{Binding IsFree}" HorizontalAlignment="Right" Width="101"/>
+            <Button Grid.Row="0" Content="{Binding RecButtonText}" Height="30" Margin="146,10,0,0" Command="{Binding RecordMovieCommand}" VerticalAlignment="Top" IsEnabled="{Binding IsFree}" HorizontalAlignment="Left" Width="112"/>
 
 
-            <Image Width="200"  Height="120" Margin="10" VerticalAlignment="Top" Grid.Row="1" Source="{Binding Preview}" x:Name="_previeImage" MouseDown="canvas_image_MouseDown" HorizontalAlignment="Left" Stretch="Uniform"
-					RenderOptions.BitmapScalingMode="HighQuality">
+            <Image Width="200"  Height="120" Margin="10,9,0,0" VerticalAlignment="Top" Grid.Row="2" Source="{Binding Preview}" x:Name="_previeImage" MouseDown="canvas_image_MouseDown" HorizontalAlignment="Left" Stretch="Uniform"
+					RenderOptions.BitmapScalingMode="HighQuality" Visibility="Collapsed" Grid.RowSpan="2">
                 <Image.LayoutTransform>
                     <RotateTransform  Angle="{Binding Rotation}" />
                 </Image.LayoutTransform>
@@ -361,7 +355,7 @@
                         <ScrollViewer />
                     </StackPanel.ScrollOwner>
                     <materialDesign:Card Margin="4" Visibility="{Binding ShowLuminosityLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}">
-                        <Expander Header="{T:Translate LabelLuminosity}" IsExpanded="{Binding ShowHistogram}">
+                        <Expander Header="{T:Translate LabelLuminosity}" IsExpanded="{Binding ShowHistogram}" Visibility="Collapsed">
                             <Grid Height="75" Margin="4">
                                 <Polygon Points="{Binding LuminanceHistogramPoints}" Stretch="Fill" Fill="LightGray" Opacity="1" />
                                 <Polygon Points="{Binding RedColorHistogramPoints}" Stretch="Fill" Fill="Red" Opacity="0.9" />
@@ -374,7 +368,7 @@
                         </Expander>
                     </materialDesign:Card>
                     <materialDesign:Card Margin="4" Visibility="{Binding ShowControlLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}">
-                        <Expander Header="{T:Translate LabelControl}" IsEnabled="{Binding IsFree}" >
+                        <Expander Header="Camera" IsEnabled="{Binding IsFree}" >
                             <Grid Margin="4">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -479,8 +473,50 @@
                             </Grid>
                         </Expander>
                     </materialDesign:Card>
+                    <materialDesign:Card Margin="4" Visibility="{Binding ShowFocusStackingLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}">
+                        <Expander Header="{T:Translate LabelFocusStackingSimple}" IsExpanded="True" >
+                            <Grid Margin="4">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button Content="{T:Translate ButtonStart}" Command="{Binding StartSimpleFocusStackingCommand}" IsEnabled="{Binding IsFree}" Grid.Row="4"  Margin="5" Height="Auto"/>
+                                <Button Content="{T:Translate ButtonPreview}" Command="{Binding PreviewSimpleFocusStackingCommand}" IsEnabled="{Binding IsFree}" Grid.Row="4" Grid.Column="1" Margin="5" Visibility="Hidden" Height="Auto"/>
+                                <Button Content="{T:Translate ButtonStop}" Command="{Binding StopSimpleFocusStackingCommand}" Grid.Column="1" IsEnabled="{Binding IsFocusStackingRunning}" Grid.Row="4" Margin="5" Height="Auto"/>
+
+                                <Label Grid.Row="0" Grid.Column="0" Content="{T:Translate LabelNoOfPhots}"/>
+                                <Controls:NumericUpDown Grid.Row="0" Grid.Column="1" Minimum="1" Value="{Binding PhotoNumber}" IsEnabled="{Binding IsFree}" Margin="2"/>
+
+                                <!--<Controls1:AdvancedSlider Minimum="1" Maximum="100" Label="{T:TranslateExtension LabelNoOfPhots}" Grid.ColumnSpan="4" Value="{Binding PhotoNo}" IsEnabled="{Binding IsFree}" />-->
+
+                                <Label Grid.Row="1" Grid.Column="0" Content="{T:Translate LabelDirection}"/>
+                                <ComboBox Grid.Row="1" Grid.Column="1"  SelectedIndex="{Binding Direction}" IsEnabled="{Binding IsFree}" Margin="2" Height="28">
+                                    <ComboBoxItem Content="{T:Translate LabelNearFar}" />
+                                    <ComboBoxItem Content="{T:Translate LabelFarNear}" />
+                                </ComboBox>
+
+                                <Label Grid.Row="2" Grid.Column="0" Content="{T:Translate LabelFocusStep}"/>
+                                <ComboBox Grid.Row="2" Grid.Column="1"  SelectedIndex="{Binding FocusStepSize}" IsEnabled="{Binding IsFree}" Margin="2" Height="28">
+                                    <ComboBoxItem Content="{T:Translate LabelStepSmall}" />
+                                    <ComboBoxItem Content="{T:Translate LabelStepMedium}" />
+                                    <ComboBoxItem Content="{T:Translate LabelStepLarge}" />
+                                </ComboBox>
+                                <!--<Controls1:AdvancedSlider Minimum="1" Maximum="1024" Label="{T:TranslateExtension LabelFocusStep}" Grid.ColumnSpan="4" Value="{Binding FocusStep}" IsEnabled="{Binding IsFree}" Grid.Row="1" />-->
+
+                                <Label Grid.Row="3" Grid.Column="0" Content="{T:Translate LabelWaitTime}"/>
+                                <Controls:NumericUpDown Grid.Row="3" Grid.Column="1" Minimum="2" Value="{Binding WaitTime}" IsEnabled="{Binding IsFree}" Margin="2"/>
+                            </Grid>
+                        </Expander>
+                    </materialDesign:Card>
                     <materialDesign:Card Margin="4" Visibility="{Binding ShowOverlayLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}">
-                        <Expander Header="{T:Translate LabelOverlay}">
+                        <Expander Header="{T:Translate LabelOverlay}" IsExpanded="True">
                             <Grid Margin="4">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="100*"/>
@@ -531,8 +567,13 @@
                             </Grid>
                         </Expander>
                     </materialDesign:Card>
+                    <materialDesign:Card Margin="4" Visibility="{Binding ShowOverlayLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}">
+                        <Expander Header="LightBox" IsExpanded="True" >
+
+                        </Expander>
+                    </materialDesign:Card>
                     <materialDesign:Card Margin="4" Visibility="{Binding ShowFocusStackingLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}">
-                        <Expander Header="{T:Translate LabelFocusStackingAdvanced}">
+                        <Expander Header="{T:Translate LabelFocusStackingAdvanced}" Visibility="Collapsed">
                             <Grid Margin="4">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -575,55 +616,8 @@
                             </Grid>
                         </Expander>
                     </materialDesign:Card>
-                    <materialDesign:Card Margin="4" Visibility="{Binding ShowFocusStackingLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}">
-                        <Expander Header="{T:Translate LabelFocusStackingSimple}" >
-                            <Grid Margin="4">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Button Content="{T:Translate ButtonStart}" Command="{Binding StartSimpleFocusStackingCommand}" IsEnabled="{Binding IsFree}" Grid.Row="4"  Margin="5"/>
-                                <Button Content="{T:Translate ButtonPreview}" Command="{Binding PreviewSimpleFocusStackingCommand}" IsEnabled="{Binding IsFree}" Grid.Row="4" Grid.Column="1" Margin="5"/>
-                                <Button Content="{T:Translate ButtonStop}" Command="{Binding StopSimpleFocusStackingCommand}" Grid.Column="1" IsEnabled="{Binding IsFocusStackingRunning}" Grid.Row="5" Margin="5"/>
-
-                                <Label Grid.Row="0" Grid.Column="0" Content="{T:Translate LabelNoOfPhots}"/>
-                                <Controls:NumericUpDown Grid.Row="0" Grid.Column="1" Minimum="1" Value="{Binding PhotoNumber}" IsEnabled="{Binding IsFree}" Margin="2"/>
-
-                                <!--<Controls1:AdvancedSlider Minimum="1" Maximum="100" Label="{T:TranslateExtension LabelNoOfPhots}" Grid.ColumnSpan="4" Value="{Binding PhotoNo}" IsEnabled="{Binding IsFree}" />-->
-
-                                <Label Grid.Row="1" Grid.Column="0" Content="{T:Translate LabelDirection}"/>
-                                <ComboBox Grid.Row="1" Grid.Column="1"  SelectedIndex="{Binding Direction}" IsEnabled="{Binding IsFree}" Margin="2">
-                                    <ComboBoxItem Content="{T:Translate LabelFarNear}" />
-                                    <ComboBoxItem Content="{T:Translate LabelNearFar}" />
-                                </ComboBox>
-
-                                <Label Grid.Row="2" Grid.Column="0" Content="{T:Translate LabelFocusStep}"/>
-                                <ComboBox Grid.Row="2" Grid.Column="1"  SelectedIndex="{Binding FocusStepSize}" IsEnabled="{Binding IsFree}" Margin="2">
-                                    <ComboBoxItem Content="{T:Translate LabelStepSmall}" />
-                                    <ComboBoxItem Content="{T:Translate LabelStepMedium}" />
-                                    <ComboBoxItem Content="{T:Translate LabelStepLarge}" />
-                                </ComboBox>
-                                <!--<Controls1:AdvancedSlider Minimum="1" Maximum="1024" Label="{T:TranslateExtension LabelFocusStep}" Grid.ColumnSpan="4" Value="{Binding FocusStep}" IsEnabled="{Binding IsFree}" Grid.Row="1" />-->
-
-                                <ProgressBar  Grid.Row="5" Margin="5" Value="{Binding FocusStackingTick}" Maximum="{Binding WaitTime}" VerticalAlignment="Bottom"/>
-                                <Label Content="{Binding PhotoCount}" Grid.Row="5" Margin="5"/>
-
-                                <Label Grid.Row="3" Grid.Column="0" Content="{T:Translate LabelWaitTime}"/>
-                                <Controls:NumericUpDown Grid.Row="3" Grid.Column="1" Minimum="2" Value="{Binding WaitTime}" IsEnabled="{Binding IsFree}" Margin="2"/>
-                            </Grid>
-                        </Expander>
-                    </materialDesign:Card>
                     <materialDesign:Card Margin="4" Visibility="{Binding ShowMotionDetectionLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}">
-                        <Expander Header="{T:Translate LabelMotionDetection}" >
+                        <Expander Header="{T:Translate LabelMotionDetection}" Visibility="Collapsed" >
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="5" />
@@ -665,7 +659,7 @@
                             </Grid>
                         </Expander>
                     </materialDesign:Card>
-                    <materialDesign:Card Margin="4" >
+                    <materialDesign:Card Margin="4" Visibility="Collapsed" >
                         <Expander Header="{T:Translate LabelSnapshot}">
                             <Grid Margin="4">
                                 <Grid.RowDefinitions>
