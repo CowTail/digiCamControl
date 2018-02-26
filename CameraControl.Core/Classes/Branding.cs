@@ -196,12 +196,12 @@ namespace CameraControl.Core.Classes
         {
             ApplicationDataFolder = String.Empty;
             ResetSettingsOnLoad = false;
-            ShowAboutWindow = true;
+            ShowAboutWindow = false;
             OnlineReference = true;
             ShowStartupScreen = true;
             ShowStartupScreenAnimation = true;
-            ShowWelcomeScreen = true;
-            CheckForUpdate = true;
+            ShowWelcomeScreen = false;
+            CheckForUpdate = false;
             ShowRefreshButtonMainWindow = true;
             ShowDownloadButtonMainWindow = true;
             ShowBracketingButtonMainWindow = true;

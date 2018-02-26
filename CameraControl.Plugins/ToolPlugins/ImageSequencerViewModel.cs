@@ -354,13 +354,13 @@ namespace CameraControl.Plugins.ToolPlugins
 
         private void CreateMovie()
         {
-            GenMovieWindow window = new GenMovieWindow();
+            /*GenMovieWindow window = new GenMovieWindow();
             var viewmodel = new GenMovieViewModel(window);
             viewmodel.Fps = Fps;
             viewmodel.MinValue = MinValue;
             viewmodel.MaxValue = MaxValue;
             window.DataContext = viewmodel;
-            window.ShowDialog();   
+            window.ShowDialog();   */
         }
     }
 }

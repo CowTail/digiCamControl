@@ -14,6 +14,7 @@
                       xmlns:local1="clr-namespace:CameraControl.Core.Controls.ZoomAndPan;assembly=CameraControl.Core"
                       xmlns:ControlzEx="clr-namespace:ControlzEx;assembly=MahApps.Metro"
                       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                      xmlns:Controls1="clr-namespace:CameraControl.Controls;assembly=CameraControl.Core"
                       x:Class="CameraControl.windows.LiveViewWnd"
         Title="{Binding Title}" Height="800" Width="750" Loaded="Window_Loaded" Closed="Window_Closed" Closing="Window_Closing"
                       mc:Ignorable="d" d:DataContext="{d:DesignInstance Type={x:Type Classes:LiveviewSettings}}" Topmost="{Binding StayOnTop, Mode=OneWay}" PreviewKeyDown="MetroWindow_PreviewKeyDown"
@@ -285,12 +286,10 @@
                 <StackPanel HorizontalAlignment="Center" Margin="0" Orientation="Horizontal" x:Name="StackPanel">
                     <ToggleButton IsChecked="{Binding LockA}" Margin="4" Style="{StaticResource MaterialDesignActionLightToggleButton}" Height="40" Width="40"
                                   ToolTip="{T:Translate LabelLockNear}">
-                        <ToggleButton.Content>
-                            <materialDesign:PackIcon  Kind="LockOpen" />
-                        </ToggleButton.Content>
                         <materialDesign:ToggleButtonAssist.OnContent >
                             <materialDesign:PackIcon Kind="Lock" />
                         </materialDesign:ToggleButtonAssist.OnContent>
+                        <materialDesign:PackIcon  Kind="LockOpen" />
                     </ToggleButton>
 
                     <Button Margin="4" Content="|&lt;" Command="{Binding MoveACommand}" IsEnabled="{Binding LockA}" Style="{DynamicResource MaterialDesignFloatingActionMiniLightButton}" Visibility="{Binding AdvancexFocusStacking, Converter={StaticResource BooleanToVisibilityConverter1}}" ToolTip="{T:Translate LabelGoNear}"/>
@@ -309,12 +308,10 @@
 
                     <ToggleButton IsChecked="{Binding LockB}" Margin="4" Style="{StaticResource MaterialDesignActionLightToggleButton}" Height="40" Width="40"
                                   ToolTip="{T:Translate LabelLockFar}">
-                        <ToggleButton.Content>
-                            <materialDesign:PackIcon  Kind="LockOpen" />
-                        </ToggleButton.Content>
                         <materialDesign:ToggleButtonAssist.OnContent >
                             <materialDesign:PackIcon Kind="Lock" />
                         </materialDesign:ToggleButtonAssist.OnContent>
+                        <materialDesign:PackIcon  Kind="LockOpen" />
                     </ToggleButton>
 
                 </StackPanel>
@@ -322,25 +319,30 @@
             </StackPanel>
         </materialDesign:Card>
 
-        <ToggleButton Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Name="PanelButton" VerticalAlignment="Center" Grid.RowSpan="5" IsChecked="True"
+        <!--<ToggleButton Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" x:Name="PanelButton" VerticalAlignment="Center" Grid.RowSpan="5" IsChecked="True"
                       Margin="0" Width="24" Height="24" Style="{StaticResource MaterialDesignFlatToggleButton}" Cursor="Hand" >
             <materialDesign:PackIcon Width="21" Height="21" Kind="DotsVertical" />
-        </ToggleButton>
+        </ToggleButton>-->
         <!--<Expander ExpandDirection="Right" IsExpanded="{Binding ShowLeftTab}" Margin="0" Padding="0" 
 			Style="{DynamicResource MetroExpanderEx}">-->
-        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="4"  MinWidth="250" Visibility="{Binding ElementName=PanelButton, Path=IsChecked , Converter={StaticResource BooleanToVisibilityConverter1}}" Margin="15,0,0,3">
+        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="4"  MinWidth="250" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter1}, ElementName=PanelButton}" Margin="15,0,0,3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" MinHeight="12" />
-                <RowDefinition Height="84*" />
-                <RowDefinition Height="631*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="72*" />
+                <RowDefinition Height="475*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Button Content="{T:Translate ButtonAutoFocus}" Height="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="112" Command="{Binding AutoFocusCommand}" 
 					Visibility="{Binding ShowAutofocusLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}"/>
 
-            <Button Grid.Row="0" Content="{Binding RecButtonText}" Height="30" Margin="146,10,0,0" Command="{Binding RecordMovieCommand}" VerticalAlignment="Top" IsEnabled="{Binding IsFree}" HorizontalAlignment="Left" Width="112"/>
+            <Button Grid.Row="0" Grid.Column="0" Content="{T:Translate ButtonCapture}" Height="30" Margin="0,10,10,0" Command="{Binding CaptureCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="101" IsEnabled="{Binding IsFree}"/>
+            <Button Grid.Row="0" Grid.Column="0" Content="{T:Translate ButtonCancel}" Height="30" Margin="0,10,10,0" Command="{Binding CancelCaptureCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="101" 
+					Visibility="{Binding CaptureInProgress, Converter={StaticResource BooleanToVisibilityConverter1}}"/>
 
+            <Button Grid.Row="0" Content="{Binding RecButtonText}" Height="30" Margin="10,50,10,0" Command="{Binding RecordMovieCommand}" VerticalAlignment="Top" IsEnabled="{Binding IsFree}" HorizontalAlignment="Left" Width="112"/>
+
+            <Button Grid.Row="0" Content="{T:Translate ButtonPreview}" Height="30" Margin="10,50,10,0" Command="{Binding PreviewCommand}" VerticalAlignment="Top" IsEnabled="{Binding IsFree}" HorizontalAlignment="Right" Width="101"/>
 
             <Image Width="200"  Height="120" Margin="10,9,0,0" VerticalAlignment="Top" Grid.Row="2" Source="{Binding Preview}" x:Name="_previeImage" MouseDown="canvas_image_MouseDown" HorizontalAlignment="Left" Stretch="Uniform"
 					RenderOptions.BitmapScalingMode="HighQuality" Visibility="Collapsed" Grid.RowSpan="2">
@@ -474,7 +476,7 @@
                         </Expander>
                     </materialDesign:Card>
                     <materialDesign:Card Margin="4" Visibility="{Binding ShowFocusStackingLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}">
-                        <Expander Header="{T:Translate LabelFocusStackingSimple}" IsExpanded="True" >
+                        <Expander Header="Focus Stacking" IsExpanded="True" >
                             <Grid Margin="4">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -516,7 +518,7 @@
                         </Expander>
                     </materialDesign:Card>
                     <materialDesign:Card Margin="4" Visibility="{Binding ShowOverlayLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}">
-                        <Expander Header="{T:Translate LabelOverlay}" IsExpanded="True">
+                        <Expander Header="{T:Translate LabelOverlay}">
                             <Grid Margin="4">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="100*"/>
@@ -568,8 +570,9 @@
                         </Expander>
                     </materialDesign:Card>
                     <materialDesign:Card Margin="4" Visibility="{Binding ShowOverlayLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}">
-                        <Expander Header="LightBox" IsExpanded="True" >
-
+                        <Expander Header="LightBox" IsExpanded="True">
+                            
+                            
                         </Expander>
                     </materialDesign:Card>
                     <materialDesign:Card Margin="4" Visibility="{Binding ShowFocusStackingLiveView, Converter={StaticResource BooleanToVisibilityConverter1}, Source={x:Static Core:ServiceProvider.Branding}}">
@@ -726,8 +729,8 @@
 
         <materialDesign:Snackbar
             Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" 
-            IsActive="{Binding Source={x:Static Member=Devices:StaticHelper.Instance}, Path=IsActive}">
-            <materialDesign:SnackbarMessage Content="{Binding Source={x:Static Member=Devices:StaticHelper.Instance}, Path=SystemMessage}" />
+            IsActive="{Binding IsActive, Source={x:Static Devices:StaticHelper.Instance}}">
+            <materialDesign:SnackbarMessage Content="{Binding SystemMessage, Source={x:Static Devices:StaticHelper.Instance}}" />
         </materialDesign:Snackbar>
 
     </Grid>

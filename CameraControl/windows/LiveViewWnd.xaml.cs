@@ -429,5 +429,10 @@ namespace CameraControl.windows
                 zoomAndPanControl.ScaleToFit();
             }
         }
+
+        private void AdvancedSlider_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

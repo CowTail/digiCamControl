@@ -522,11 +522,9 @@
     <Compile Include="windows\TimeLapseWnd.xaml.cs">
       <DependentUpon>TimeLapseWnd.xaml</DependentUpon>
     </Compile>
-    <Compile Include="windows\Welcome.xaml.cs">
-      <DependentUpon>Welcome.xaml</DependentUpon>
+    <Compile Include="windows\Welcomeq.xaml.cs">
+      <DependentUpon>Welcomeq.xaml</DependentUpon>
     </Compile>
-    <Compile Include="XSplit\BroadcasterPlugin.cs" />
-    <Compile Include="XSplit\TimedBroadcasterPlugin.cs" />
     <Page Include="Controls\CameraItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -767,7 +765,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="windows\Welcome.xaml">
+    <Page Include="windows\Welcomeq.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

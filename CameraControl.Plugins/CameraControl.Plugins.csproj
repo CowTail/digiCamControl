@@ -120,14 +120,6 @@
       <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DropNet">
-      <HintPath>..\packages\DropNet.1.10.23.0\lib\net40\DropNet.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
-      <HintPath>..\packages\Facebook.7.0.10-beta\lib\net45\Facebook.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.0.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.0-alpha\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
       <Private>True</Private>
@@ -230,11 +222,6 @@
       <DependentUpon>PHDWnd.xaml</DependentUpon>
     </Compile>
     <Compile Include="AutoExportPlugins\BasePluginViewModel.cs" />
-    <Compile Include="AutoExportPlugins\DropboxConfig.xaml.cs">
-      <DependentUpon>DropboxConfig.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AutoExportPlugins\DropboxPlugin.cs" />
-    <Compile Include="AutoExportPlugins\DropboxViewModel.cs" />
     <Compile Include="AutoExportPlugins\ExecuteFilePluginConfig.xaml.cs">
       <DependentUpon>ExecuteFilePluginConfig.xaml</DependentUpon>
     </Compile>
@@ -245,26 +232,6 @@
     </Compile>
     <Compile Include="AutoExportPlugins\ExecuteFilePlugin.cs" />
     <Compile Include="AutoExportPlugins\ExecuteFilePluginViewModel.cs" />
-    <Compile Include="AutoExportPlugins\FacebookPlugin.cs" />
-    <Compile Include="AutoExportPlugins\FacebookPluginConfig.xaml.cs">
-      <DependentUpon>FacebookPluginConfig.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AutoExportPlugins\FacebookPluginViewModel.cs" />
-    <Compile Include="AutoExportPlugins\FtpPlugin.cs" />
-    <Compile Include="AutoExportPlugins\FtpPluginConfig.xaml.cs">
-      <DependentUpon>FtpPluginConfig.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AutoExportPlugins\FtpPluginViewModel.cs" />
-    <Compile Include="AutoExportPlugins\PrintPlugin.cs" />
-    <Compile Include="AutoExportPlugins\PrintPluginConfig.xaml.cs">
-      <DependentUpon>PrintPluginConfig.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AutoExportPlugins\PrintPluginViewModel.cs" />
-    <Compile Include="AutoExportPlugins\SendEmailPlugin.cs" />
-    <Compile Include="AutoExportPlugins\SendEmailPluginConfig.xaml.cs">
-      <DependentUpon>SendEmailPluginConfig.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AutoExportPlugins\SendEmailPluginViewModel.cs" />
     <Compile Include="AutoExportPlugins\TransformPlugin.cs" />
     <Compile Include="AutoExportPlugins\TransformPluginConfig.xaml.cs">
       <DependentUpon>TransformPluginConfig.xaml</DependentUpon>
@@ -377,16 +344,6 @@
     <Compile Include="ToolPlugins\CombineZpWindow.xaml.cs">
       <DependentUpon>CombineZpWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ToolPlugins\EnfusePlugin.cs" />
-    <Compile Include="ToolPlugins\EnfusePluginViewModel.cs" />
-    <Compile Include="ToolPlugins\EnfusePluginWindow.xaml.cs">
-      <DependentUpon>EnfusePluginWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ToolPlugins\GenMoviePlugin.cs" />
-    <Compile Include="ToolPlugins\GenMovieViewModel.cs" />
-    <Compile Include="ToolPlugins\GenMovieWindow.xaml.cs">
-      <DependentUpon>GenMovieWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ToolPlugins\GenThumbPlugin.cs" />
     <Compile Include="ToolPlugins\GenThumbViewModel.cs" />
     <Compile Include="ToolPlugins\GenThumbWindow.xaml.cs">
@@ -432,31 +389,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AutoExportPlugins\DropboxConfig.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="AutoExportPlugins\ExecuteFilePluginConfig.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="AutoExportPlugins\CopyFilePluginConfig.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AutoExportPlugins\FacebookPluginConfig.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AutoExportPlugins\FtpPluginConfig.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AutoExportPlugins\PrintPluginConfig.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AutoExportPlugins\SendEmailPluginConfig.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -549,14 +486,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ToolPlugins\CombineZpWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ToolPlugins\EnfusePluginWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ToolPlugins\GenMovieWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

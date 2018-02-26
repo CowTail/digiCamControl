@@ -63,8 +63,6 @@ namespace CameraControl.Plugins
                 ServiceProvider.PluginManager.ToolPlugins.Add(new PhdPlugin());
                 ServiceProvider.PluginManager.ToolPlugins.Add(new GenThumbPlugin());
                 ServiceProvider.PluginManager.ToolPlugins.Add(new ImageSequencerPlugin());
-                ServiceProvider.PluginManager.ToolPlugins.Add(new GenMoviePlugin());
-                ServiceProvider.PluginManager.ToolPlugins.Add(new EnfusePlugin());
                 ServiceProvider.PluginManager.ToolPlugins.Add(new CombineZpPlugin());
                 ServiceProvider.PluginManager.ToolPlugins.Add(new StatisticsPlugin());
                 ServiceProvider.PluginManager.ToolPlugins.Add(new ArduinoPlugin());
@@ -80,11 +78,6 @@ namespace CameraControl.Plugins
                 ServiceProvider.PluginManager.AutoExportPlugins.Add(new TransformPlugin());
                 ServiceProvider.PluginManager.AutoExportPlugins.Add(new CopyFilePlugin());
                 ServiceProvider.PluginManager.AutoExportPlugins.Add(new ExecuteFilePlugin());
-                ServiceProvider.PluginManager.AutoExportPlugins.Add(new PrintPlugin());
-                ServiceProvider.PluginManager.AutoExportPlugins.Add(new FtpPlugin());
-                ServiceProvider.PluginManager.AutoExportPlugins.Add(new FacebookPlugin());
-                ServiceProvider.PluginManager.AutoExportPlugins.Add(new SendEmailPlugin());
-                ServiceProvider.PluginManager.AutoExportPlugins.Add(new DropboxPlugin());
 
                 ServiceProvider.PluginManager.ImageTransformPlugins.Add(new NoTransform());
                 ServiceProvider.PluginManager.ImageTransformPlugins.Add(new ResizeTransform());
