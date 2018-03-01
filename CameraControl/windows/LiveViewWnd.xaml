@@ -484,14 +484,15 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" MinHeight="34"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Button Content="{T:Translate ButtonStart}" Command="{Binding StartSimpleFocusStackingCommand}" IsEnabled="{Binding IsFree}" Grid.Row="4"  Margin="5" Height="Auto"/>
-                                <Button Content="{T:Translate ButtonPreview}" Command="{Binding PreviewSimpleFocusStackingCommand}" IsEnabled="{Binding IsFree}" Grid.Row="4" Grid.Column="1" Margin="5" Visibility="Hidden" Height="Auto"/>
-                                <Button Content="{T:Translate ButtonStop}" Command="{Binding StopSimpleFocusStackingCommand}" Grid.Column="1" IsEnabled="{Binding IsFocusStackingRunning}" Grid.Row="4" Margin="5" Height="Auto"/>
+                                <Button Content="{T:Translate ButtonPreview}" Command="{Binding PreviewSimpleFocusStackingCommand}" IsEnabled="{Binding IsFree}" Grid.Row="4" Grid.Column="1" Margin="5" Height="Auto"/>
+                                <Button Content="{T:Translate ButtonStop}" Command="{Binding StopSimpleFocusStackingCommand}" Grid.Column="1" IsEnabled="{Binding IsFocusStackingRunning}" Grid.Row="5" Margin="5" Height="Auto"/>
 
                                 <Label Grid.Row="0" Grid.Column="0" Content="{T:Translate LabelNoOfPhots}"/>
                                 <Controls:NumericUpDown Grid.Row="0" Grid.Column="1" Minimum="1" Value="{Binding PhotoNumber}" IsEnabled="{Binding IsFree}" Margin="2"/>
@@ -511,7 +512,9 @@
                                     <ComboBoxItem Content="{T:Translate LabelStepLarge}" />
                                 </ComboBox>
                                 <!--<Controls1:AdvancedSlider Minimum="1" Maximum="1024" Label="{T:TranslateExtension LabelFocusStep}" Grid.ColumnSpan="4" Value="{Binding FocusStep}" IsEnabled="{Binding IsFree}" Grid.Row="1" />-->
-
+                                <ProgressBar  Grid.Row="5" Margin="5" Value="{Binding FocusStackingTick}" Maximum="{Binding WaitTime}" VerticalAlignment="Bottom"/>
+                                <Label Content="{Binding PhotoCount}" Grid.Row="5" Margin="5"/>
+                                
                                 <Label Grid.Row="3" Grid.Column="0" Content="{T:Translate LabelWaitTime}"/>
                                 <Controls:NumericUpDown Grid.Row="3" Grid.Column="1" Minimum="2" Value="{Binding WaitTime}" IsEnabled="{Binding IsFree}" Margin="2"/>
                             </Grid>

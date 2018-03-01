@@ -237,7 +237,7 @@ namespace CameraControl.Core.Classes
             ShowPresetPanel = true;
             ShowImagePropertiesPanel = true;
             ShowMetadataPanel = true;
-            ShowExportPanel = true;
+            ShowExportPanel = false;
             ShowToolsPanel = true;
             ShowAnimation = true;
             ShowMainMenu = true;
@@ -246,7 +246,7 @@ namespace CameraControl.Core.Classes
 
             ShowViewMenu = true;
             ShowCameraMenu = true;
-            ShowPluginMenu = true;
+            ShowPluginMenu = false;
         }
 
 
