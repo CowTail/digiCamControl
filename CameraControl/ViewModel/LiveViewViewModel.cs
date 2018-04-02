@@ -25,6 +25,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using WebEye;
+using InTheHand.Net.Bluetooth;
 using Color = System.Drawing.Color;
 using Point = System.Windows.Point;
 using Timer = System.Timers.Timer;
@@ -3041,7 +3042,7 @@ namespace CameraControl.ViewModel
                     StartLiveView();
                     if (PhotoCount > 0)
                     {
-                        int dir = Direction == 0 ? -1 : 1;
+                        int dir = Direction == 0 ? 1 : -1;
                         switch (FocusStepSize)
                         {
                             case 0:
